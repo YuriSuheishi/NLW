@@ -1,11 +1,13 @@
+import styles from '../styles/components/XpBar.module.css';
+
 export function XpBar(){
     return (
-        <header className="xp-bar">
+        <header className={styles.xpBar}>
             <span> 0 xp </span>
             <div>
                 <div style={{width: '50%'}}/>
                 
-                <span className="current-xp" style={{ left: '50%' }}> 300xp</span>
+                <span className={styles.currentXp} style={{ left: '50%' }}> 300xp</span>
             </div>
             <span> 600 xp</span>
         </header>
