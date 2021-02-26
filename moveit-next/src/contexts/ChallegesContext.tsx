@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode } from 'react';
+import { createContext, useState, ReactNode, useEffect } from 'react';
 import challenges from '../../challenges.json';
 export const ChallengesContext = createContext({} as ChallengeContextData);
 
@@ -21,6 +21,8 @@ interface ChallengeContextData {
   levelUp: () => void;
   newChallenge: () => void;
   resetChallenge: () => void;
+  completeChallenge: () => void;
+  failChallenge:() => void;
 }
 
 export function ChallengesProvider({children}){
@@ -30,14 +32,25 @@ export function ChallengesProvider({children}){
   const[activeChallenge, setActiveChallenge] = useState(null);
   const xpNL = Math.pow((level + 1) * 4,2);
 
+  useEffect(() => {
+    Notification.requestPermission();
+  },[])
+
   function levelUp(){
     setLevel(level + 1)
   }
 
   function newChallenge(){
-    console.log('fui chamado!')
-    const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
-    const challenge = challenges[randomChallengeIndex];
+    const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
+    const challenge = challenges[randomChallengeIndex]
+
+    new Audio('/notification.mp3').play();
+
+    if (Notification.permission == 'granted'){
+      new Notification('Novo desafio',{
+        body: `Valendo ${challenge.amount}xp!`
+      })
+    }
 
     setActiveChallenge(challenge);
   }
@@ -46,9 +59,26 @@ export function ChallengesProvider({children}){
     setActiveChallenge(null);
   }
 
+  function failChallenge(){
+    resetChallenge();
+  }
+
+  function completeChallenge(){
+    const xpTotal = xp + activeChallenge.amount;
+    setChallengesCompleted(challengesCompleted + 1);
+    resetChallenge();
+    if (xpTotal >= xpNL){
+      levelUp();
+      setXp(xpTotal - xpNL);
+    }
+    else{
+      setXp(xpTotal);
+    }
+  }
+
   return(
     <ChallengesContext.Provider 
-    value={{level, xp, xpNL, challengesCompleted, levelUp, newChallenge, resetChallenge, activeChallenge }}>
+    value={{level, xp, xpNL, challengesCompleted, levelUp, newChallenge, resetChallenge, completeChallenge, failChallenge , activeChallenge }}>
         {children}
     </ChallengesContext.Provider>    
   );

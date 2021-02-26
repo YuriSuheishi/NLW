@@ -7,10 +7,12 @@ import { Profile } from '../components/Profile';
 import { CompletedChallenges } from '../components/CompletedChallendes';
 import { Countdown } from '../components/Countdown';
 import { ChallengeBox } from '../components/ChallengeBox';
+import { CountdownProvider } from '../contexts/CountdownContext' ;
 
 export default function Home() {
   return (
     <div className={styles.container}>
+    <CountdownProvider>
         <Head> <title>Inicio Move It!</title> </Head>
 
         <XpBar />
@@ -25,6 +27,7 @@ export default function Home() {
             <ChallengeBox />
           </div>
         </section>
+    </CountdownProvider>    
     </div>
   )
 }
