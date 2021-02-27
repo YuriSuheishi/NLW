@@ -17,16 +17,41 @@ interface CountdownContextData{
     hasFinished: boolean;
     isTheFinalCountdown: () => void;
     start: () => void;
+    timeStop: () => void;
+    doubleTime:() => void;
 }
 
-export function CountdownProvider({children}){
-    const {newChallenge, activeChallenge} = useContext(ChallengesContext);
+export function CountdownProvider({children}:CountdownProviderProps){
+    const {newChallenge,useDoubleTime,useFreeze, activeChallenge, counterFreeze, counterDoubleTime} = useContext(ChallengesContext);
     const [time, setTime] = useState(0.1*60);
     const min = Math.floor(time/60);
     const s = time % 60;
 
     const [hasFinished, setHasFinished] = useState(false);
     const [isActive, setIsActive] = useState(false);
+    const [Velocidade, setVelocidade] = useState(1000);
+
+    function timeStop(){
+        if(counterFreeze> 0){
+            clearTimeout(countdownTimeout);
+            setIsActive(false);
+            setTime(s + (min *60));
+            useFreeze();
+        }
+        else{
+            console.log('acabou freeze');
+        }
+    }
+
+    function doubleTime(){
+        if(counterDoubleTime>0){
+            setVelocidade(Velocidade/2);
+            useDoubleTime();
+        }
+        else{
+            console.log('acabou double time');
+        }
+    }
 
     function isTheFinalCountdown(){
         clearTimeout(countdownTimeout);
@@ -42,6 +67,7 @@ export function CountdownProvider({children}){
         if(!activeChallenge){
             isTheFinalCountdown();
             setHasFinished(false);
+            setVelocidade(1000);
         }
     },[activeChallenge])
 
@@ -50,7 +76,8 @@ export function CountdownProvider({children}){
         if(isActive && time > 0){
             countdownTimeout = setTimeout(() => {
                 setTime(time - 1)
-            }, 1000)
+                console.log(Velocidade)
+            }, Velocidade)
         } else if (isActive && time == 0){
             setHasFinished(true);
             setIsActive(false);
@@ -60,7 +87,7 @@ export function CountdownProvider({children}){
 
     return(
         <CountdownContext.Provider
-        value={{min, s, hasFinished, isActive, isTheFinalCountdown, start}}>
+        value={{min, s, hasFinished, isActive, timeStop, doubleTime, isTheFinalCountdown, start}}>
             {children}
         </CountdownContext.Provider>
 

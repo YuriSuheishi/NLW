@@ -1,6 +1,7 @@
 import styles from "../styles/components/Countdown.module.css";
 import { useState, useEffect, useContext } from 'react';
 import { CountdownContext } from "../contexts/CountdownContext";
+import { darkMode } from '../pages/api/theme';
 
 let countdownTimeout: NodeJS.Timeout;
 
@@ -12,7 +13,7 @@ export function Countdown(){
     
     return (
         <div>
-            <div className={styles.countdownContainer}>
+            <div className={(darkMode)? (styles.countdownBlackContainer):(styles.countdownContainer)}>
                 <div>
                     <span>{minL}</span>
                     <span>{minR}</span>
@@ -27,7 +28,7 @@ export function Countdown(){
             { hasFinished ? (
                     <button 
                     disabled
-                    className={styles.start} >
+                    className={(darkMode)? (styles.blackStart):(styles.start)}>
                     Ciclo encerrado 
                     </button>
             ):(
@@ -35,14 +36,14 @@ export function Countdown(){
                 { isActive? (
                     <button 
                     type="button" 
-                    className={`${styles.start} ${styles.active}`}
+                    className={(darkMode)? (`${styles.blackStart} ${styles.blackActive}`):(`${styles.start} ${styles.active}`)}
                     onClick={isTheFinalCountdown}>
                     Abandonar Ciclo 
                     </button>
                 ):(
                     <button 
                     type="button" 
-                    className={styles.start} 
+                    className={(darkMode)? (styles.blackStart):(styles.start)}
                     onClick={start}>
                     Iniciar um ciclo 
                     </button>

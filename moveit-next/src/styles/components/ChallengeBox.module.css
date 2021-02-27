@@ -14,13 +14,31 @@
     justify-content: center;
 }
 
+.blackContainer{
+    height: 100%;
+    background: var(--title);
+    border-radius: 5px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
 .notActive{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+
 .notActive strong{
+    margin-top: 4px;
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.4;
@@ -52,6 +70,10 @@
     font-size: 1.25rem;
     padding: 0 2rem 1.5rem;
     border-bottom: 1px solid var(--gray-line);
+}
+
+.active header span{
+    color: var(--green);
 }
 
 .active main{
@@ -104,4 +126,150 @@
 
 .active footer button.completed{
     background: var(--green);
+}
+
+.blackNotActive{
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.blackNotActive strong{
+    margin-top: 4px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.blackNotActive p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.4;
+    max-width: 70%;
+    margin-top: 3rem;
+}
+
+.blackNotActive p img{ 
+    margin-bottom: 1rem;
+}
+
+.blackActive{
+    height: 100%;
+    
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.blackActive header{
+    color: var(--white);
+    font-weight: 600;
+    font-size: 1.25rem;
+    padding: 0 2rem 1.5rem;
+    border-bottom: 1px solid var(--gray-line);
+}
+
+.blackActive header span{
+    color: var(--green);
+}
+
+.blackActive main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.blackActive main strong{
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--title);
+    margin: 1.5rem 0 1rem;
+}
+
+.blackActive main p{
+    line-height: 1.5;
+}
+
+.blackActive footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.blackActive footer button{
+    height: 3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 5px;
+
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.blackActive footer button:hover{
+    filter: brightness(0.9);
+}
+
+.blackActive footer button.failed{
+    background: var(--red);
+}
+
+.blackActive footer button.completed{
+    background: var(--green);
+}
+
+.power{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.power img{
+    width: 30%;
+    margin-left:4px;
+    margin-right:4px;
+}
+
+.power button{
+    width: 30%;
+    height: 100px;
+    margin-left:4px;
+    margin-right:4px;
+    margin-top: 30px;
+
+    color: var(--white) ;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align:left;
+    flex-direction: column;
+
+    border: 0;
+    border-radius: 5px;
+}
+
+.buttonFreeze{
+    background: url('/power/freeze.png') center no-repeat ;
+    background-size: 100% 100%;
+}
+
+.buttonXp{
+    background: url('/power/xp.png') center no-repeat ;
+    background-size: 100% 100%;
+}
+
+.buttonDoubleTime{
+    background: url('/power/doubleTime.png') center no-repeat  ;
+    background-size: 100% 100%;
 }
