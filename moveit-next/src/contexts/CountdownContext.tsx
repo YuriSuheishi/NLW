@@ -1,5 +1,6 @@
 import { createContext, ReactNode } from "react";
 export const CountdownContext = createContext({} as CountdownContextData);
+import {zeroTime} from '../pages/api/time';
 
 import { useState, useEffect, useContext } from 'react';
 import { ChallengesContext } from "../contexts/ChallegesContext";
@@ -23,7 +24,7 @@ interface CountdownContextData{
 
 export function CountdownProvider({children}:CountdownProviderProps){
     const {newChallenge,useDoubleTime,useFreeze, activeChallenge, counterFreeze, counterDoubleTime} = useContext(ChallengesContext);
-    const [time, setTime] = useState(0.1*60);
+    const [time, setTime] = useState(zeroTime);
     const min = Math.floor(time/60);
     const s = time % 60;
 
@@ -56,7 +57,7 @@ export function CountdownProvider({children}:CountdownProviderProps){
     function isTheFinalCountdown(){
         clearTimeout(countdownTimeout);
         setIsActive(false);
-        setTime(0.1*60);
+        setTime(zeroTime);
     }
 
     function start(){

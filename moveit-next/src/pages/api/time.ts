@@ -1,0 +1,1 @@
+export const zeroTime = 0.1*60;

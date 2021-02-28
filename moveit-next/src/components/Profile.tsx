@@ -6,7 +6,7 @@ import { darkMode } from '../pages/api/theme';
 
 export function Profile(){
         const {level, user, trocaMode} = useContext(ChallengesContext);
-        // https://github.com/YuriSuheishi => [ "https://github", "YuriSuheishi" ]
+        // https://github.com/YuriSuheishi => [ "https:", "YuriSuheishi" ]
         const [link, name] = String(user).split('//github.com/');
 
         return (
