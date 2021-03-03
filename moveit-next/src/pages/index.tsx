@@ -1,9 +1,15 @@
 import { Login } from '../components/Login';
+import Head from 'next/head';
 
 export function Index() {
 
     return (
-        <Login />
+        <div>
+         <Head> <title> Move It!</title> 
+         </Head> 
+         
+         <Login />
+         </div>
     )
 }    
 

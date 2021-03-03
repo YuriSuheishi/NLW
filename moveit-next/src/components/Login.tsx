@@ -18,7 +18,7 @@ export function Login() {
                 <h1>Bem Vindo</h1>
                 <div>
                     <img src='pngegg.png' />  
-                    <span>Faça login com seu email do GitHub para começar.</span>
+                    <span>Faça login com sua conta do GitHub para começar.</span>
                 </div>
                 <div className={styles.form}>
                     <input id='github' type='text'></input> 

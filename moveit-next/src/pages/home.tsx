@@ -35,7 +35,7 @@ export default function Home(props: HomeProps) {
     darkMode={props.darkMode}
     >
     <CountdownProvider>
-        <Head> <title>Inicio Move It!</title> </Head>
+        <Head> <title>Move It!</title> </Head>
         <XpBar />
 
         <section>

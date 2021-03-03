@@ -27,4 +27,4 @@ Caso todas as dependecias estejam devidamente instaladas, Basta entrar na pasta 
 - [x] Adicionar Tela de Login
 - [ ] Implementar DarkTheme
 - [ ] Implementar a LeaderBoard
-- [ ] Implementar Testes
+- [ ] UI responsiva

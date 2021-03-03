@@ -1,1 +1,1 @@
-export const zeroTime = 0.1*60;
+export const zeroTime = 1*60;
