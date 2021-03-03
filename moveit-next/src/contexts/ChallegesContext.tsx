@@ -146,7 +146,7 @@ export function ChallengesProvider({children, ...rest }:ChallengesProviderProps)
   function doubleXpOn(){
     if(counterDoubleXp >0){
       if(doubleXP){
-        console.log('doubleXp ja foi ativado')
+        console.log('doubleXp ja foi ativado');
       }
       else{
         setDoubleXP(true);
@@ -159,7 +159,14 @@ export function ChallengesProvider({children, ...rest }:ChallengesProviderProps)
   }
 
   function completeChallenge(){
-    const xpTotal = xp + activeChallenge.amount;
+    var realAmount= 0 ;
+    if(doubleXP){
+      realAmount = (activeChallenge.amount * 2);
+    }
+    else{
+      realAmount = activeChallenge.amount;
+    }
+    const xpTotal = xp + realAmount;
     setChallengesCompleted(challengesCompleted + 1);
     resetChallenge();
     if (xpTotal >= xpNL){
